@@ -1,0 +1,2 @@
+Prefix plugins/Bar/example
+Plugin Bar inputfile parameters.txt outputfile barplot
