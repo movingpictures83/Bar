@@ -1,4 +1,4 @@
-otufile	plugins/Bar/example/otus.txt
-mapping	plugins/Bar/example/mapping.txt
-tree	plugins/Bar/example/rep_set.tre
-column	Rank2
+otufile	plugins/Bar/example/asv_abund.norm.transpose.csv
+mapping	plugins/Bar/example/asv_map.csv
+tree	plugins/Bar/example/asv_tax.csv
+column	Phylum
