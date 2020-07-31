@@ -28,6 +28,7 @@ run <- function() {
    #HMP <<- prune_samples(samples.to.keep, HMP)
    #HMP <<- filter_taxa(HMP, function(x) sum(x >3) > (0.01*length(x)), TRUE)
    p0 <<- read_csv2phyloseq(otu.file=otu.path, taxonomy.file=tree.path, metadata.file=map.path)
+   #print(tax_glom(p0, taxrank = 'Phylum', NArm=T))
 }
 output <- function(outputfile) {
   #pdf(paste(outputfile,"pdf",sep="."), width=8, height=8)#,  width = 10*300,        # 5 x 300 pixels
