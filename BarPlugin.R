@@ -10,16 +10,25 @@ library(psadd)
 input <- function(inputfile) {
   pfix = prefix()
   if (length(pfix) != 0) {
-     prefix <- paste(pfix, "/", sep="")
+     pfix <- paste(pfix, "/", sep="")
   }
-
+  
   parameters <<- read.table(inputfile, as.is=T);
   rownames(parameters) <<- parameters[,1]; 
    # Need to get the three files
 #paste(pfix, toString(parameters["inputfile",2]), sep="")
-   otu.path <<- paste(pfix, toString(parameters["otufile", 2]), sep="")
-   tree.path <<- paste(pfix, toString(parameters["tree", 2]), sep="")
-   map.path <<- paste(pfix, toString(parameters["mapping", 2]), sep="")
+  otu.path <<- toString(parameters["otufile", 2])
+  tree.path <<- toString(parameters["tree", 2])
+  map.path <<- toString(parameters["mapping", 2])
+  if (!(startsWith(otu.path, "/"))) {
+   otu.path <<- paste(pfix, otu.path, sep="")
+  }
+  if (!(startsWith(tree.path, "/"))) {
+   tree.path <<- paste(pfix, tree.path, sep="")
+  }
+  if (!(startsWith(map.path, "/"))) {
+   map.path <<- paste(pfix, map.path, sep="")
+  }
    diffcol <<- parameters["column", 2]
    #HMP <<- import_qiime(otu.path, map.path, tree.path, parseFunction = parse_taxonomy_qiime)
 }
