@@ -20,6 +20,7 @@ input <- function(inputfile) {
   otu.path <<- toString(parameters["otufile", 2])
   tree.path <<- toString(parameters["tree", 2])
   map.path <<- toString(parameters["mapping", 2])
+  separate <<- toString(parameters["separate", 2])
   if (!(startsWith(otu.path, "/"))) {
    otu.path <<- paste(pfix, otu.path, sep="")
   }
@@ -45,9 +46,14 @@ output <- function(outputfile) {
   print("Generating plot...")
   #y <- plot_bar(p0, x="Sample", fill=diffcol) + theme(legend.position="bottom", legend.title = element_text(size=2),
 #legend.text = element_text(size=1)) + guides(col = guide_legend(ncol = 15))
-  y <- plot_bar(p0, x="Sample", fill=diffcol) + theme(legend.position="bottom", legend.title = element_text(size=3),
-legend.text = element_text(size=3)) + guides(fill = guide_legend(ncol = 12, keyheight=0.5, keywidth=0.5)) 
-  ggsave(paste(outputfile,"pdf",sep="."), y, width=10, dpi=300)
+print(sample_data(p0))  
+
+y <- plot_bar(p0, x=separate, fill=diffcol) + theme(legend.position="bottom", legend.title = element_text(size=3),
+legend.text = element_text(size=3)) + guides(fill = guide_legend(ncol = 12, keyheight=0.5, keywidth=0.5)) #+
+#geom_bar(aes(color=Phylum, fill=diffcol), stat="identity", position="stack")
+
+
+ggsave(paste(outputfile,"pdf",sep="."), y, width=10, dpi=300)
   #print(str(y))
   print("Generating CSV...")
   #print(str(y$data))
